@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:feathers"
+    },
+    {
+      "item": "inkandquill:ink_bottle"
+    }
+  ],
+  "result": {
+    "item": "inkandquill:ink_and_quill"
+  }
+}

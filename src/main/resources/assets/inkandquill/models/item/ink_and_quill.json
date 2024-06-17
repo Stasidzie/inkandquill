@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "inkandquill:item/ink_and_quill"
+  }
+}
