@@ -75,7 +75,9 @@ public class ChangeNameViaInkAndQuillC2SPacket {
 
         if (wasUsed) {
             ItemStack inkAndQuill = player.getItemInHand(packet.handWithQuill);
-            player.setItemInHand(packet.handWithQuill, InkAndQuillItem.damage(inkAndQuill));
+            if (!player.isCreative()) {
+                player.setItemInHand(packet.handWithQuill, InkAndQuillItem.damage(inkAndQuill));
+            }
             //noinspection resource
             Level level = player.level();
             RandomSource randomsource = player.getRandom();
@@ -84,6 +86,7 @@ public class ChangeNameViaInkAndQuillC2SPacket {
         }
     }
 
+    //vanilla code from net.minecraft.world.inventory.AnvilMenu
     private static @Nullable String validateName(String itemName) {
         String s = SharedConstants.filterText(itemName);
         return s.length() <= 50 ? s : null;
