@@ -1,5 +1,6 @@
 package com.stasidzie.inkandquill.client.screen;
 
+import com.stasidzie.inkandquill.InkAndQuillMod;
 import com.stasidzie.inkandquill.network.ModPackets;
 import com.stasidzie.inkandquill.network.packet.ChangeNameViaInkAndQuillC2SPacket;
 import net.minecraft.client.Minecraft;
@@ -23,7 +24,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @OnlyIn(Dist.CLIENT)
 public class InkAndQuillScreen extends Screen {
 
-    private static final ResourceLocation GUI_IMAGE = new ResourceLocation("inkandquill","textures/gui/ink_and_quill.png");
+    private static final ResourceLocation GUI_IMAGE = new ResourceLocation(InkAndQuillMod.MODID,"textures/gui/ink_and_quill.png");
     /** The X size of the gui window in pixels. */
     private final int imageWidth = 176;
     /** The Y size of the gui window in pixels. */
@@ -51,19 +52,19 @@ public class InkAndQuillScreen extends Screen {
     protected void init() {
         super.init();
 
-        int i = (this.width - this.imageWidth) / 2;
-        int j = (this.height - this.imageHeight) / 2;
+        int left = (this.width - this.imageWidth) / 2;
+        int top = (this.height - this.imageHeight) / 2;
 
 
-        this.addRenderableOnly((pGuiGraphics, pMouseX, pMouseY, pPartialTick) -> pGuiGraphics.drawString(this.font, this.title, i + 30, j + 7, 4210752, false));
+        this.addRenderableOnly((pGuiGraphics, pMouseX, pMouseY, pPartialTick) -> pGuiGraphics.drawString(this.font, this.title, left + 30, top + 7, 4210752, false));
 
-        this.addRenderableOnly((pGuiGraphics, pMouseX, pMouseY, pPartialTick) -> pGuiGraphics.renderItem(itemToRename, i + 8, j + 20));
-        this.addRenderableOnly((pGuiGraphics, pMouseX, pMouseY, pPartialTick) -> pGuiGraphics.renderItemDecorations(Minecraft.getInstance().font, itemToRename, i + 8, j + 20));
+        this.addRenderableOnly((pGuiGraphics, pMouseX, pMouseY, pPartialTick) -> pGuiGraphics.renderItem(itemToRename, left + 8, top + 20));
+        this.addRenderableOnly((pGuiGraphics, pMouseX, pMouseY, pPartialTick) -> pGuiGraphics.renderItemDecorations(Minecraft.getInstance().font, itemToRename, left + 8, top + 20));
 
-        this.addRenderableWidget(new InkAndQuillScreen.ConfirmButton(i + 7, j + 45));
-        this.addRenderableWidget(new InkAndQuillScreen.CancelButton(i + 35, j + 45));
+        this.addRenderableWidget(new InkAndQuillScreen.ConfirmButton(left + 7, top + 45));
+        this.addRenderableWidget(new InkAndQuillScreen.CancelButton(left + 35, top + 45));
 
-        this.renameBox = new EditBox(this.font, i + 32, j + 24, 133, 12, Component.translatable("ink_and_quill.title"));
+        this.renameBox = new EditBox(this.font, left + 32, top + 24, 133, 12, Component.translatable("ink_and_quill.title"));
         this.renameBox.setCanLoseFocus(false);
         this.renameBox.setTextColor(-1);
         this.renameBox.setTextColorUneditable(-1);
@@ -77,8 +78,8 @@ public class InkAndQuillScreen extends Screen {
 
     @Override
     public void resize(Minecraft minecraft, int width, int height) {
-        String s = this.renameBox.getValue();
         this.init(minecraft, width, height);
+        String s = this.renameBox.getValue();
         this.renameBox.setValue(s);
     }
 
