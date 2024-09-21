@@ -41,11 +41,9 @@ public class ChangeNameViaInkAndQuillC2SPacket {
     }
 
     public static void onReceive(ChangeNameViaInkAndQuillC2SPacket packet, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        ServerPlayer player = context.getSender();
+        ServerPlayer player = contextSupplier.get().getSender();
         if (player != null) {
-            context.enqueueWork(() -> handle(packet, player));
-            context.setPacketHandled(true);
+            handle(packet, player);
         }
     }
 

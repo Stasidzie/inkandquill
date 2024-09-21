@@ -30,10 +30,8 @@ public class OpenInkAndQuillScreenS2CPacket {
         buf.writeEnum(handWithQuill);
     }
 
-    public static void onReceive(OpenInkAndQuillScreenS2CPacket packet, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        context.enqueueWork(() -> handle(packet));
-        context.setPacketHandled(true);
+    public static void onReceive(OpenInkAndQuillScreenS2CPacket packet, Supplier<NetworkEvent.Context> ignoredContextSupplier) {
+        handle(packet);
     }
 
     @OnlyIn(Dist.CLIENT)
