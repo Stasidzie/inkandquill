@@ -25,6 +25,11 @@ public class InkAndQuillItem extends Item {
     }
 
     @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
         return damage(itemStack);
     }
